@@ -1,2 +1,12 @@
 ---
 # tasks file for ansible-xfce4-terminal
+- name: Make sure .config/xfce4/terminal exists
+  file:
+    path: "{{ansible_env.HOME}}/.config/xfce4/terminal"
+    state: directory
+
+- name: Copy xfce4-terminal config
+  template:
+    src: terminalrc.j2
+    dest: "{{ansible_env.HOME}}/.config/xfce4/terminal/terminalrc"
+
